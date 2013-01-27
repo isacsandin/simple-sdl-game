@@ -6,9 +6,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
-
 using namespace std;
-
 
 namespace Utils {
 
@@ -32,15 +30,19 @@ inline SDL_Surface *load_image(string filename) {
 		SDL_FreeSurface(loadedImage);
 
 		//If the surface was optimized
-		if (optimizedImage == NULL) {
+		if (optimizedImage != NULL) {
 
-			cerr<< "displayFormat error!" << endl;
 			//Color key surface
-			//  SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF ) );
-		}
-	}else{
+			SDL_SetColorKey(optimizedImage, SDL_SRCALPHA,
+					SDL_MapRGB(optimizedImage->format, 0, 0xFF, 0xFF));
 
-		cerr<< "cannot load image!" << endl;
+		} else {
+			cerr << "displayFormat error!" << endl;
+		}
+
+	} else {
+
+		cerr << "cannot load image!" << endl;
 
 	}
 
@@ -48,8 +50,8 @@ inline SDL_Surface *load_image(string filename) {
 	return optimizedImage;
 }
 
-inline void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination,
-		SDL_Rect* clip = NULL) {
+inline void apply_surface(int x, int y, SDL_Surface* source,
+		SDL_Surface* destination, SDL_Rect* clip = NULL) {
 	//Holds offsets
 	SDL_Rect offset;
 
@@ -60,7 +62,6 @@ inline void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destin
 	//Blit
 	SDL_BlitSurface(source, clip, destination, &offset);
 }
-
 
 }
 

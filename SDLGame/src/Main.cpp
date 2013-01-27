@@ -7,6 +7,8 @@
 #include <string>
 #include "Dot.h"
 #include "Timer.h"
+#include "Background.h"
+
 
 //The screen sttributes
 const int SCREEN_WIDTH = 640;
@@ -59,6 +61,8 @@ int main(int argc, char* args[]) {
 	//The dot that will be used
 	Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
 
+	Background back;
+
 	//Keeps track of time since last rendering
 	Timer delta;
 
@@ -90,7 +94,9 @@ int main(int argc, char* args[]) {
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
 		//Show the dot on the screen
+		back.show(screen);
 		myDot.show(screen);
+
 
 		//Update the screen
 		if (SDL_Flip(screen) == -1) {
@@ -105,7 +111,8 @@ int main(int argc, char* args[]) {
 	}
 
 	//Clean up
-	myDot.clean_up();
+	myDot.~Dot();
+	back.~Background();
 	SDL_Quit();
 
 	return 0;

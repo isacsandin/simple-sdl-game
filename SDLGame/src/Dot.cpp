@@ -20,7 +20,7 @@ Dot::Dot(int screen_width, int screen_height)
 
     //Initialize the offsets
     x = 0;
-    y = 200;
+    y = 360;
 
     //Initialize the velocity
     xVel = 50;
@@ -156,7 +156,9 @@ Dot::Dot(int screen_width, int screen_height)
 }
 
 Dot::~Dot() {
-	// TODO Auto-generated destructor stub
+	//Free the surface
+	SDL_FreeSurface(dot_l);
+	SDL_FreeSurface(dot_r);
 }
 
 
@@ -322,11 +324,15 @@ int Dot::death()
 
 void Dot::show(SDL_Surface *screen)
 {
-	if(moving == 2 || moving == -2)
+	if(moving == 2 || moving == -2){
+		SDL_SetAlpha(dot_l, 0, dot_l->format->alpha);
 		Utils::apply_surface( (int)x, (int)y, dot_l, screen, &clip[sprite_frame] );
+	}
 	else
-		if(moving == 1 || moving == -1)
+		if(moving == 1 || moving == -1){
+			SDL_SetAlpha(dot_r, 0, dot_r->format->alpha);
 			Utils::apply_surface( (int)x, (int)y, dot_r, screen, &clip[sprite_frame] );
+		}
 
 }
 
@@ -339,9 +345,3 @@ bool Dot::load_files() {
 	return true;
 }
 
-
-void Dot::clean_up() {
-	//Free the surface
-	SDL_FreeSurface(dot_l);
-	SDL_FreeSurface(dot_r);
-}
