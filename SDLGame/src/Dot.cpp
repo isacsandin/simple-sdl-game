@@ -170,6 +170,8 @@ void Dot::handle_input(SDL_Event event)
 			case SDLK_DOWN: down = true; break;
 			case SDLK_LEFT: moving = 2; break;
 			case SDLK_RIGHT: moving = 1; break;
+			default: break;
+
 		}
 	}
 	else {
@@ -181,6 +183,7 @@ void Dot::handle_input(SDL_Event event)
 				case SDLK_RIGHT: moving = -1; break;
 				case SDLK_t: shot_s = true; break;
 				case SDLK_m: death_s = true; break;
+				default: break;
 			}
 		}
 	}
@@ -233,7 +236,7 @@ void Dot::move( Uint32 deltaTicks )
 					jump_started = true;
 				}
 				else
-					if (jump_alt != 3 & jump_alt != 4)
+					if ((jump_alt != 3) && (jump_alt != 4))
 						sprite_frame += 1;
 			}
 			else{
