@@ -229,7 +229,7 @@ void Dot::move( Uint32 deltaTicks )
 		else
 		if(jump){
 
-			if(jump_alt <= 5 && !jump_done){
+			if(jump_alt <= 4 && !jump_done){
 				y -= yVel * ( deltaTicks / 1000.f );
 				jump_alt += 1;
 
@@ -237,16 +237,13 @@ void Dot::move( Uint32 deltaTicks )
 					sprite_frame = 8;
 					jump_started = true;
 				}
-				else
-					if ((jump_alt != 3) && (jump_alt != 4))
-						sprite_frame += 1;
+				else sprite_frame += 1;
 			}
 			else{
 				jump_done = true;
 				y += yVel * ( deltaTicks / 1000.f );
 				jump_alt -= 1;
-				if(jump_alt != 4 && jump_alt != 5 && jump_alt != 3)
-					sprite_frame -= 1;
+				sprite_frame -= 1;
 				if(jump_alt==0){
 					jump = false;
 					jump_done = false;
