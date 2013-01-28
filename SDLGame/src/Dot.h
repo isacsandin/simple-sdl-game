@@ -8,6 +8,7 @@
 #ifndef DOT_H_
 #define DOT_H_
 #include "Utils.h"
+#include <vector>
 #include <SDL/SDL.h>
 
 
@@ -24,7 +25,10 @@ class Dot {
 	int moving;
 
 	bool down;
+	bool crouched;
+	bool climbing_s,climbing_started;
 
+	bool up,up_s;
 	bool jump,jump_done,jump_started;
 	int jump_alt;
 
@@ -36,7 +40,16 @@ class Dot {
 	int SCREEN_HEIGHT;
 
 	//The portions of the sprite map to be blitted
-	SDL_Rect clip[ 23 ];
+	SDL_Rect clip[ 70 ];
+
+	int animations[8]; 	// 0 - Moving
+							// 1 - Stationary
+							// 2 - Crouched
+							// 3 - Jump
+							// 4 - Shooting
+							// 5 - Dying
+							// 6 - Climbing
+							// 7 - Falling
 
 	int sprite_frame;
 
