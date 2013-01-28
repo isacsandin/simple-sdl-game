@@ -33,7 +33,7 @@ inline SDL_Surface *load_image(string filename) {
 		if (optimizedImage != NULL) {
 
 			//Color key surface
-			SDL_SetColorKey(optimizedImage, SDL_SRCALPHA,
+			SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY,
 					SDL_MapRGB(optimizedImage->format, 0, 0xFF, 0xFF));
 
 		} else {

@@ -51,7 +51,6 @@ void Background::move(Uint32 deltaTicks){
 		//Reset the offset
 		bgX = -background->w;
 	}
-	cout << bgX << endl;
 }
 
 void Background::show(SDL_Surface *screen) {
