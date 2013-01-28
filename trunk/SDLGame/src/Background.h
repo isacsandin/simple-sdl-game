@@ -17,10 +17,13 @@ public:
 	Background();
 	virtual ~Background();
 	void show(SDL_Surface *screen);
+	void handle_input(SDL_Event event);
+	void move(Uint32 deltaTicks);
 
 private:
 	SDL_Surface *background;
     int bgX, bgY;
+    int moving;
 
 };
 
