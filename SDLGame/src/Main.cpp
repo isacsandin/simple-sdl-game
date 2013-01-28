@@ -72,12 +72,15 @@ int main(int argc, char* args[]) {
 	//While the user hasn't quit
 	while (quit == false) {
 
-		myDot.move(delta.get_ticks());
+		Uint32 ticks = delta.get_ticks();
+		myDot.move(ticks);
+		back.move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			myDot.handle_input(event);
+			back.handle_input(event);
 
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {
