@@ -12,7 +12,6 @@ TileMap::TileMap(int width, int height) {
 	screen_height = height;
 	camera = new Camera(0, 0, width, height);
 	tileSheet = Utils::load_image("resources/tiles.png");
-	system("file resources/tiles.png");
 	//Clip the sprite sheet
 	clipT[TILE_RED].x = 0;
 	clipT[TILE_RED].y = 0;
