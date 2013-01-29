@@ -7,7 +7,7 @@
 #include <string>
 #include "Dot.h"
 #include "Timer.h"
-#include "Background.h"
+#include "TileMap.h"
 
 
 //The screen sttributes
@@ -26,6 +26,7 @@ SDL_Surface *screen = NULL;
 
 //The event structure
 SDL_Event event;
+
 
 bool init() {
 	//Initialize all SDL subsystems
@@ -52,7 +53,6 @@ bool init() {
 int main(int argc, char* args[]) {
 	//Quit flag
 	bool quit = false;
-
 	//Initialize
 	if (init() == false) {
 		return 1;
@@ -61,7 +61,10 @@ int main(int argc, char* args[]) {
 	//The dot that will be used
 	Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
 
-	Background back;
+
+	TileMap tiles(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	//Background back;
 
 	//Keeps track of time since last rendering
 	Timer delta;
@@ -74,13 +77,13 @@ int main(int argc, char* args[]) {
 
 		Uint32 ticks = delta.get_ticks();
 		myDot.move(ticks);
-		back.move(ticks);
+//		back.move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			myDot.handle_input(event);
-			back.handle_input(event);
+//			back.handle_input(event);
 
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {
@@ -96,8 +99,10 @@ int main(int argc, char* args[]) {
 		SDL_FillRect(screen, &screen->clip_rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
+		//Show the tiles
+		tiles.show(screen);
 		//Show the dot on the screen
-		back.show(screen);
+//		back.show(screen);
 		myDot.show(screen);
 
 
@@ -115,7 +120,7 @@ int main(int argc, char* args[]) {
 
 	//Clean up
 	myDot.~Dot();
-	back.~Background();
+//	back.~Background();
 	SDL_Quit();
 
 	return 0;
