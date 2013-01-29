@@ -4,10 +4,15 @@
 //The headers
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 #include <string>
 #include "Dot.h"
 #include "Timer.h"
 #include "TileMap.h"
+#include "Background.h"
+#include "Sound.h"
+
 
 
 //The screen sttributes
@@ -43,6 +48,12 @@ bool init() {
 		return false;
 	}
 
+    //Initialize SDL_mixer
+    if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 4096 ) == -1 )
+    {
+        return false;
+    }
+
 	//Set the window caption
 	SDL_WM_SetCaption("Sprite", NULL);
 
@@ -64,6 +75,8 @@ int main(int argc, char* args[]) {
 
 	TileMap tiles(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+	Sound sound;
+
 	//Background back;
 
 	//Keeps track of time since last rendering
@@ -77,13 +90,14 @@ int main(int argc, char* args[]) {
 
 		Uint32 ticks = delta.get_ticks();
 		myDot.move(ticks);
-//		back.move(ticks);
+		//back.move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			myDot.handle_input(event);
-//			back.handle_input(event);
+			sound.handle_input(event);
+			//back.handle_input(event);
 
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {
@@ -102,7 +116,7 @@ int main(int argc, char* args[]) {
 		//Show the tiles
 		tiles.show(screen);
 		//Show the dot on the screen
-//		back.show(screen);
+		//back.show(screen);
 		myDot.show(screen);
 
 
@@ -120,7 +134,8 @@ int main(int argc, char* args[]) {
 
 	//Clean up
 	myDot.~Dot();
-//	back.~Background();
+	//back.~Background();
+    Mix_CloseAudio();
 	SDL_Quit();
 
 	return 0;
