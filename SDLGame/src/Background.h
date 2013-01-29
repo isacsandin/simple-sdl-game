@@ -10,6 +10,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <string>
+#include <fstream>
 #include "Utils.h"
 
 class Background {
