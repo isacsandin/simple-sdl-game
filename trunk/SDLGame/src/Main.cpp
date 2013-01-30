@@ -12,6 +12,7 @@
 #include "TileMap.h"
 #include "Background.h"
 #include "Sound.h"
+#include "Camera.h"
 
 
 
@@ -77,6 +78,8 @@ int main(int argc, char* args[]) {
 
 	Sound sound;
 
+	Camera *camera = new Camera(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	//Background back;
 
 	//Keeps track of time since last rendering
@@ -91,12 +94,14 @@ int main(int argc, char* args[]) {
 		Uint32 ticks = delta.get_ticks();
 		myDot.move(ticks);
 		//back.move(ticks);
+		camera->move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			myDot.handle_input(event);
 			sound.handle_input(event);
+			camera->handle_input(event);
 			//back.handle_input(event);
 
 			//If the user has Xed out the window
@@ -114,7 +119,7 @@ int main(int argc, char* args[]) {
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
 		//Show the tiles
-		tiles.show(screen);
+		tiles.show(screen,camera);
 		//Show the dot on the screen
 		//back.show(screen);
 		myDot.show(screen);
@@ -135,6 +140,7 @@ int main(int argc, char* args[]) {
 	//Clean up
 	myDot.~Dot();
 	//back.~Background();
+	tiles.~TileMap();
     Mix_CloseAudio();
 	SDL_Quit();
 
