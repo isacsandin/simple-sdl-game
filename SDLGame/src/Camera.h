@@ -14,12 +14,15 @@
 
 class Camera {
 
-	//The camera
+private:
 	SDL_Rect camera;
+	int moving;
 
 public:
 	Camera(int x, int y, int screen_width, int screen_height);
 	SDL_Rect getCamera();
+	void handle_input(SDL_Event event);
+	void move(Uint32 deltaTicks);
 	virtual ~Camera();
 };
 
