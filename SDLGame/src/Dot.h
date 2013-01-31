@@ -42,7 +42,7 @@ class Dot {
 	//The portions of the sprite map to be blitted
 	SDL_Rect clip[ 70 ];
 
-	int animations[8]; 	// 0 - Moving
+	int animations[10]; 	// 0 - Moving
 							// 1 - Stationary
 							// 2 - Crouched
 							// 3 - Jump

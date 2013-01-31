@@ -13,7 +13,7 @@
 #include "Background.h"
 #include "Sound.h"
 #include "Camera.h"
-
+#include "Map.h"
 
 
 //The screen sttributes
@@ -70,13 +70,15 @@ int main(int argc, char* args[]) {
 		return 1;
 	}
 
+
 	//The dot that will be used
-	Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
+	//Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
-	TileMap tiles(SCREEN_WIDTH, SCREEN_HEIGHT);
+	//TileMap tiles(SCREEN_WIDTH, SCREEN_HEIGHT);
+	Map map;
 
-	Sound sound;
+	//Sound sound;
 
 	Camera *camera = new Camera(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -92,15 +94,15 @@ int main(int argc, char* args[]) {
 	while (quit == false) {
 
 		Uint32 ticks = delta.get_ticks();
-		myDot.move(ticks);
+		//myDot.move(ticks);
 		//back.move(ticks);
 		camera->move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
-			myDot.handle_input(event);
-			sound.handle_input(event);
+			//myDot.handle_input(event);
+			//sound.handle_input(event);
 			camera->handle_input(event);
 			//back.handle_input(event);
 
@@ -119,10 +121,12 @@ int main(int argc, char* args[]) {
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
 		//Show the tiles
-		tiles.show(screen,camera);
+		//tiles.show(screen,camera);
+		map.show(screen,camera);
+		return 1;
 		//Show the dot on the screen
 		//back.show(screen);
-		myDot.show(screen);
+		//myDot.show(screen);
 
 
 		//Update the screen
@@ -138,9 +142,9 @@ int main(int argc, char* args[]) {
 	}
 
 	//Clean up
-	myDot.~Dot();
+	//myDot.~Dot();
 	//back.~Background();
-	tiles.~TileMap();
+	//tiles.~TileMap();
     Mix_CloseAudio();
 	SDL_Quit();
 
