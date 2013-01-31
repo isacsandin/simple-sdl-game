@@ -123,7 +123,6 @@ int main(int argc, char* args[]) {
 		//Show the tiles
 		//tiles.show(screen,camera);
 		map.show(screen,camera);
-		return 1;
 		//Show the dot on the screen
 		//back.show(screen);
 		//myDot.show(screen);

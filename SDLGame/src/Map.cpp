@@ -51,21 +51,23 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 					//k--;
 					int local_id = tmxMap->layers[l]->data[index] - k->first->firstGid;
 					SDL_Rect rect;
-					rect.x = (local_id / k->first->width ) * k->first->tileWidth;
-					rect.y = ((local_id % (k->first->height))) * k->first->tileHeight;
+					int num_tiles_width = k->first->width / k->first->tileWidth;
+					int num_tiles_height = k->first->height / k->first->tileHeight;
+					rect.x = (local_id % num_tiles_width) * k->first->tileWidth;
+					rect.y = (local_id / num_tiles_width) * k->first->tileHeight;
 					rect.w = k->first->tileWidth;
 					rect.h = k->first->tileHeight;
-					cout << tmxMap->layers[l]->data[index]<< " " << local_id << " " <<rect.x << " " << rect.y << endl;
-					cin.get();
-					if (Utils::check_collision(camera->getCamera(), rect)
-							== true) {
-						int x = (index / (tmxMap->layers[l]->width * tmxMap->layers[l]->height)) * k->first->tileWidth;
-						int y = (index % (tmxMap->layers[l]->width * tmxMap->layers[l]->height)) * k->first->tileHeight;
-						cout << x << " " << y << endl;
+					//cout << local_id << " " << rect.x << " " << rect.y  << endl;
+					//cin.get();
+					if (Utils::check_collision(camera->getCamera(), rect) == true) {
+						int x = j * k->first->tileWidth;
+						int y = i * k->first->tileHeight;
+						//cout << x << " " << y << endl;
 						//cin.get();
 						Utils::apply_surface(x - camera->getCamera().x,
 								y - camera->getCamera().y, k->second, screen,
 								&rect);
+
 
 					}
 				} else {
