@@ -65,6 +65,7 @@ inline void apply_surface(int x, int y, SDL_Surface* source,
 
 inline bool check_collision( SDL_Rect A, SDL_Rect B )
 {
+
     //The sides of the rectangles
     int leftA, leftB;
     int rightA, rightB;

@@ -50,25 +50,27 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 				if (k != tilesets.end()) {
 					//k--;
 					int local_id = tmxMap->layers[l]->data[index] - k->first->firstGid;
-					SDL_Rect rect;
 					int num_tiles_width = k->first->width / k->first->tileWidth;
-					int num_tiles_height = k->first->height / k->first->tileHeight;
-					rect.x = (local_id % num_tiles_width) * k->first->tileWidth;
-					rect.y = (local_id / num_tiles_width) * k->first->tileHeight;
-					rect.w = k->first->tileWidth;
-					rect.h = k->first->tileHeight;
-					//cout << local_id << " " << rect.x << " " << rect.y  << endl;
-					//cin.get();
-					if (Utils::check_collision(camera->getCamera(), rect) == true) {
-						int x = j * k->first->tileWidth;
-						int y = i * k->first->tileHeight;
-						//cout << x << " " << y << endl;
-						//cin.get();
-						Utils::apply_surface(x - camera->getCamera().x,
-								y - camera->getCamera().y, k->second, screen,
-								&rect);
 
+					SDL_Rect rect_tileset,rect_screen;
 
+					// rect_tileset é a posição do tile no tileset
+					rect_tileset.x = (local_id % num_tiles_width) * k->first->tileWidth;
+					rect_tileset.y = (local_id / num_tiles_width) * k->first->tileHeight;
+					rect_tileset.w = k->first->tileWidth;
+					rect_tileset.h = k->first->tileHeight;
+
+					//rect screen é a posição que o tile vai ser colado na tela
+					// este é o rect que deve ser checado por colisão com a câmera
+					rect_screen.x = j * k->first->tileWidth;
+					rect_screen.y = i * k->first->tileHeight;
+					rect_screen.w = k->first->tileWidth;
+					rect_screen.h = k->first->tileHeight;
+					if (Utils::check_collision(camera->getCamera(), rect_screen) == true) {
+
+						Utils::apply_surface(rect_screen.x - camera->getCamera().x,
+								rect_screen.y - camera->getCamera().y, k->second, screen,
+								&rect_tileset);
 					}
 				} else {
 					cerr << "invalid id in the map! layer:" << l << " data:"
