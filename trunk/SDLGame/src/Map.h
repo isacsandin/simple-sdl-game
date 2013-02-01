@@ -22,7 +22,7 @@ private:
 	NLTmxMap* tmxMap;
 	map<NLTmxMapTileset *,SDL_Surface *> tilesets;
 public:
-	Map();
+	Map(string filename);
 	virtual ~Map();
 	void show(SDL_Surface *screen,Camera *camera);
 };

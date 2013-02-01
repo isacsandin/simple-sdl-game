@@ -72,13 +72,14 @@ int main(int argc, char* args[]) {
 
 
 	//The dot that will be used
-	//Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
+	Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
 	//TileMap tiles(SCREEN_WIDTH, SCREEN_HEIGHT);
-	Map map;
+	Map map("resources/background.tmx");
+	//Map map1("resources/background1.tmx");
 
-	//Sound sound;
+	Sound sound;
 
 	Camera *camera = new Camera(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -94,15 +95,15 @@ int main(int argc, char* args[]) {
 	while (quit == false) {
 
 		Uint32 ticks = delta.get_ticks();
-		//myDot.move(ticks);
+		myDot.move(ticks);
 		//back.move(ticks);
 		camera->move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
-			//myDot.handle_input(event);
-			//sound.handle_input(event);
+			myDot.handle_input(event);
+			sound.handle_input(event);
 			camera->handle_input(event);
 			//back.handle_input(event);
 
@@ -123,9 +124,10 @@ int main(int argc, char* args[]) {
 		//Show the tiles
 		//tiles.show(screen,camera);
 		map.show(screen,camera);
+		//map1.show(screen,camera);
 		//Show the dot on the screen
 		//back.show(screen);
-		//myDot.show(screen);
+		myDot.show(screen);
 
 
 		//Update the screen

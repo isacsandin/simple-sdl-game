@@ -7,8 +7,8 @@
 
 #include "Map.h"
 
-Map::Map() {
-	char * xml = (char*) Utils::loadFile("resources/background.tmx", true);
+Map::Map(string filename) {
+	char * xml = (char*) Utils::loadFile(filename.c_str(), true);
 	this->tmxMap = NLLoadTmxMap(xml);
 	for (int i = 0; i < tmxMap->tilesets.size(); i++) {
 		tilesets[tmxMap->tilesets[i]] = Utils::load_image(
@@ -39,11 +39,13 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 
 				auto k = tilesets.begin();
 
-				while (k != tilesets.end()
-						&& !(tmxMap->layers[l]->data[index] >= k->first->firstGid
-						&& tmxMap->layers[l]->data[index]
-						<= ((k->first->width / k->first->tileWidth)
-						* (k->first->height / k->first->tileHeight)))) {
+				int num_tiles_width = k->first->width / k->first->tileWidth;
+				int num_tiles_height = k->first->height / k->first->tileHeight;
+
+
+				while (k != tilesets.end()) {
+					if (tmxMap->layers[l]->data[index] >= k->first->firstGid
+						&& tmxMap->layers[l]->data[index] <= ((num_tiles_width * num_tiles_height)+k->first->firstGid)) break;
 					k++;
 				}
 
@@ -73,10 +75,10 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 								&rect_tileset);
 					}
 				} else {
+					if (tmxMap->layers[l]->data[i] != 0)
 					cerr << "invalid id in the map! layer:" << l << " data:"
 							<< i << " value:" << tmxMap->layers[l]->data[i]
 							<< endl;
-					return;
 				}
 			}
 		}
