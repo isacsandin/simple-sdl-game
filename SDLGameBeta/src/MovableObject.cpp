@@ -7,16 +7,13 @@
 
 #include "MovableObject.h"
 
-MovableObject::MovableObject(int life, int damage) {
+MovableObject::MovableObject(int x,int y,int w,int h,int life, int damage):
+	PhisicalObject(x,y,w,h){
 	setLife(life);
 	setDamage(damage);
 }
 
-MovableObject::MovableObject() {
-}
-
 MovableObject::~MovableObject() {
-	// TODO Auto-generated destructor stub
 }
 
 void MovableObject::move(Uint32 deltaTicks){

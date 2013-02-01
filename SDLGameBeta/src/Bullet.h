@@ -13,7 +13,7 @@
 
 class Bullet: public VisibleObject, public MovableObject {
 public:
-	Bullet(int life,int damage);
+	Bullet(int x,int y,int w,int h,int life,int damage);
 	virtual ~Bullet();
 };
 

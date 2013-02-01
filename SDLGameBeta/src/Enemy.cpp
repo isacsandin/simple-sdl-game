@@ -7,10 +7,8 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(int life, int damage) {
-	// TODO Auto-generated constructor stub
-	this->setLife(life);
-	this->setDamage(damage);
+Enemy::Enemy(int x,int y,int w,int h,int life, int damage)
+	:MovableObject(x,y,w,h,life,damage),VisibleObject(){
 }
 
 Enemy::~Enemy() {

@@ -7,9 +7,8 @@
 
 #include "Bullet.h"
 
-Bullet::Bullet(int life,int damage){
-	this->setLife(life);
-	this->setDamage(damage);
+Bullet::Bullet(int x,int y,int w,int h,int life,int damage):
+	MovableObject(x,y,w,h,life,damage),VisibleObject(){
 }
 
 Bullet::~Bullet() {

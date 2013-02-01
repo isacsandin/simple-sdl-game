@@ -14,7 +14,7 @@
 class Hero: public MovableObject, public VisibleObject {
 
 public:
-	Hero(int life, int damage);
+	Hero(int x,int y,int w,int h,int life, int damage);
 	virtual ~Hero();
 	void HandleInput();
 };
