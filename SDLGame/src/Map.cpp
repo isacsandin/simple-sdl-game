@@ -87,6 +87,6 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 }
 
 Map::~Map() {
-// TODO Auto-generated destructor stub
+
 }
 
