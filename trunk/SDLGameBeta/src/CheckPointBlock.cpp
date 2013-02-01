@@ -7,16 +7,12 @@
 
 #include "CheckPointBlock.h"
 
-CheckPointBlock::CheckPointBlock() {
-	// TODO Auto-generated constructor stub
-
+CheckPointBlock::CheckPointBlock(int x,int y,int w,int h):
+	StaticObject(x,y,w,h){
 }
 
 CheckPointBlock::~CheckPointBlock() {
 	// TODO Auto-generated destructor stub
 }
 
-bool CheckPointBlock::CheckCollision(){
-	return false;
-}
 

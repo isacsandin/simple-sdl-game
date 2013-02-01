@@ -22,8 +22,7 @@ private:
 	int life;
 	int damage;
 public:
-	MovableObject(int life,int damage);
-	MovableObject();
+	MovableObject(int x,int y,int w,int h,int life, int damage);
 	virtual ~MovableObject();
 	virtual void move(Uint32 deltaTicks);
 

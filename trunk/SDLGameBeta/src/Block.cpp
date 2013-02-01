@@ -7,9 +7,8 @@
 
 #include "Block.h"
 
-Block::Block() {
-	// TODO Auto-generated constructor stub
-
+Block::Block(int x,int y,int w,int h):
+	StaticObject(x,y,w,h),VisibleObject(){
 }
 
 Block::~Block() {

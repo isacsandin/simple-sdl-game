@@ -13,7 +13,7 @@
 
 class Block: public VisibleObject, public StaticObject {
 public:
-	Block();
+	Block(int x,int y,int w,int h);
 	virtual ~Block();
 };
 

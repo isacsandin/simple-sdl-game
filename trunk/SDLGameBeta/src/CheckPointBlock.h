@@ -12,9 +12,8 @@
 
 class CheckPointBlock: public StaticObject {
 public:
-	CheckPointBlock();
+	CheckPointBlock(int x,int y,int w,int h);
 	virtual ~CheckPointBlock();
-	bool CheckCollision();
 };
 
 #endif /* CHECKPOINTBLOCK_H_ */
