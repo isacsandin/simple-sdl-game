@@ -20,3 +20,7 @@ PhisicalObject::~PhisicalObject() {
 	// TODO Auto-generated destructor stub
 }
 
+bool PhisicalObject::CheckCollision(){
+	return false;
+}
+
