@@ -8,7 +8,7 @@
 #include "Block.h"
 
 Block::Block(int x,int y,int w,int h):
-	StaticObject(x,y,w,h),VisibleObject(){
+	StaticObject(x,y,w,h){
 }
 
 Block::~Block() {
