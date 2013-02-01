@@ -1,22 +1,23 @@
 /*
- * Hero.cpp
+ * Enemy.cpp
  *
  *  Created on: 01/02/2013
  *      Author: guineri
  */
 
-#include "Hero.h"
+#include "Enemy.h"
 
-Hero::Hero(int life, int damage) {
+Enemy::Enemy(int life, int damage) {
 	// TODO Auto-generated constructor stub
 	this->setLife(life);
 	this->setDamage(damage);
 }
 
-Hero::~Hero() {
+Enemy::~Enemy() {
 	// TODO Auto-generated destructor stub
 }
 
-void Hero::HandleInput(){
-
+void Enemy::IA(){
+	return;
 }
+
