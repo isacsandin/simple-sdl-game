@@ -143,7 +143,7 @@ int main(int argc, char* args[]) {
 	}
 
 	//Clean up
-	//myDot.~Dot();
+	myDot.~Dot();
 	//back.~Background();
 	//tiles.~TileMap();
     Mix_CloseAudio();
