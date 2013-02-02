@@ -10,8 +10,8 @@
 Sound::Sound() {
 	//The music that will be played
 	music = NULL;
-	music = Mix_LoadMUS("resources/Legend_Of_Zelda_Four_Swords_Theme.wav");
-	//Mix_PlayMusic(music, -1);
+	music = Mix_LoadMUS("resources/sound/mp.wav");
+	Mix_PlayMusic(music, -1);
 
 }
 
