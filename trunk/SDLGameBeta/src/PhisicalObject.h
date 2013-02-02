@@ -23,7 +23,7 @@ public:
 	PhisicalObject(int x,int y,int w,int h);
 	virtual ~PhisicalObject();
 
-	virtual bool CheckCollision() = 0;
+	virtual bool checkCollision(SDL_Rect rect) = 0;
 
 	const SDL_Rect& getBox() const {
 		return box;
@@ -31,6 +31,38 @@ public:
 
 	void setBox(const SDL_Rect& box) {
 		this->box = box;
+	}
+
+	int getX() const {
+		return box.x;
+	}
+
+	void setX(int x) {
+		this->box.x = x;
+	}
+
+	int getY() const {
+		return box.y;
+	}
+
+	void setY(int y) {
+		this->box.y = y;
+	}
+
+	int getW() const {
+		return box.w;
+	}
+
+	void setW(int w) {
+		this->box.w = w;
+	}
+
+	int getH() const {
+		return box.h;
+	}
+
+	void setH(int h) {
+		this->box.h = h;
 	}
 };
 

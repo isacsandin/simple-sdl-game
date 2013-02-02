@@ -56,10 +56,10 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 					rect_screen.y = i * k->first->tileHeight;
 					rect_screen.w = k->first->tileWidth;
 					rect_screen.h = k->first->tileHeight;
-					if (Utils::check_collision(camera->getCamera(), rect_screen) == true) {
+					if (camera->checkCollision(rect_screen) == true) {
 
-						Utils::apply_surface(rect_screen.x - camera->getCamera().x,
-								rect_screen.y - camera->getCamera().y, k->second, screen,
+						Utils::apply_surface(rect_screen.x - camera->getBox().x,
+								rect_screen.y - camera->getBox().y, k->second, screen,
 								&rect_tileset);
 					}
 				} else {

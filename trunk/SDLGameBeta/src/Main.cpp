@@ -90,7 +90,7 @@ int main(int argc, char* args[]) {
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			sound.handle_input(event);
-			camera->handle_input(event);
+			camera->handleInput(event);
 
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {

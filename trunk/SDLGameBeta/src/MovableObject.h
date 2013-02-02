@@ -18,29 +18,10 @@
 #include "Timer.h"
 
 class MovableObject: public PhisicalObject {
-private:
-	int life;
-	int damage;
 public:
-	MovableObject(int x,int y,int w,int h,int life, int damage);
+	MovableObject(int x,int y,int w,int h);
 	virtual ~MovableObject();
 	virtual void move(Uint32 deltaTicks);
-
-	int getDamage() const {
-		return damage;
-	}
-
-	void setDamage(int damage) {
-		this->damage = damage;
-	}
-
-	int getLife() const {
-		return life;
-	}
-
-	void setLife(int life) {
-		this->life = life;
-	}
 };
 
 #endif /* MOVABLEOBJECT_H_ */
