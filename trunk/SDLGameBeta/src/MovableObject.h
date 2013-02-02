@@ -19,7 +19,7 @@
 
 class MovableObject: public PhisicalObject {
 public:
-	MovableObject(int x,int y,int w,int h);
+	MovableObject(int x, int y, int w, int h);
 	virtual ~MovableObject();
 	virtual void move(Uint32 deltaTicks) = 0;
 };

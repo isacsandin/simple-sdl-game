@@ -14,7 +14,7 @@
 
 class Enemy: public MovableObject, public VisibleObject, public GameObject {
 public:
-	Enemy(int x,int y,int w,int h,int life, int damage);
+	Enemy(int x, int y, int w, int h, int life, int damage);
 	virtual ~Enemy();
 	void IA();
 };
