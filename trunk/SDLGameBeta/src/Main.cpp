@@ -72,7 +72,8 @@ int main(int argc, char* args[]) {
 	Mario mario;
 	Koopa koopa;
 
-	Map map("resources/background.tmx");
+	Map map("resources/fase_teste.tmx");
+	//Map map("resources/background.tmx");
 	//Map map1("resources/background1.tmx");
 
 	Sound sound;
