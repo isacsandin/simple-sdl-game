@@ -15,7 +15,7 @@ Sound::Sound() {
 
 }
 
-int Sound::handle_input(SDL_Event event) {
+int Sound::handleInput(SDL_Event event) {
 
 	if (event.type == SDL_KEYDOWN) {
 		switch (event.key.keysym.sym) {
