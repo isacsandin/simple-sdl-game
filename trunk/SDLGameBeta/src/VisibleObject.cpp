@@ -16,7 +16,3 @@ VisibleObject::~VisibleObject() {
 	// TODO Auto-generated destructor stub
 }
 
-bool VisibleObject::show(){
-	return false;
-}
-

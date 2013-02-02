@@ -12,7 +12,7 @@ class VisibleObject {
 public:
 	VisibleObject();
 	virtual ~VisibleObject();
-	bool show();
+	virtual bool show(SDL_Surface * screen) = 0;
 };
 
 #endif /* VISIBLEOBJECT_H_ */
