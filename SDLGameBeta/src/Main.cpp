@@ -12,6 +12,7 @@
 #include "Camera.h"
 #include "Map.h"
 #include "Mario.h"
+#include "Koopa.h"
 
 //The screen sttributes
 const int SCREEN_WIDTH = 640;
@@ -69,6 +70,8 @@ int main(int argc, char* args[]) {
 	}
 
 	Mario mario;
+	Koopa koopa;
+
 	Map map("resources/background.tmx");
 	//Map map1("resources/background1.tmx");
 
@@ -89,6 +92,7 @@ int main(int argc, char* args[]) {
 		Uint32 ticks = delta.get_ticks();
 		camera->move(ticks);
 		mario.move(ticks);
+		koopa.move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
@@ -114,6 +118,7 @@ int main(int argc, char* args[]) {
 		map.show(screen,camera);
 		//map1.show(screen,camera);
 		mario.show(screen);
+		koopa.show(screen);
 		//Update the screen
 		if (SDL_Flip(screen) == -1) {
 			return 1;

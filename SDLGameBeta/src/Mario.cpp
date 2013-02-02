@@ -9,7 +9,7 @@
 
 
 Mario::Mario():
-	Hero(0,360,40,60,100,100){
+	Hero(0,380,40,60,100,100){
 
 	// TODO Auto-generated constructor stub
 	mario_r =  Utils::load_image("resources/spriteMario_r.png");
