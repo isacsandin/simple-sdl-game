@@ -14,7 +14,7 @@
 #include "Sound.h"
 #include "Camera.h"
 #include "Map.h"
-#include "Enemy.h"
+#include "Koopa.h"
 
 
 //The screen sttributes
@@ -74,7 +74,7 @@ int main(int argc, char* args[]) {
 
 	//The dot that will be used
 	Dot myDot(SCREEN_WIDTH,SCREEN_HEIGHT);
-	Enemy myEnemy;
+	Koopa koopa;
 
 
 	//TileMap tiles(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -98,7 +98,7 @@ int main(int argc, char* args[]) {
 
 		Uint32 ticks = delta.get_ticks();
 		myDot.move(ticks);
-		myEnemy.move(ticks);
+		koopa.move(ticks);
 		//back.move(ticks);
 		camera->move(ticks);
 
@@ -131,7 +131,7 @@ int main(int argc, char* args[]) {
 		//Show the dot on the screen
 		//back.show(screen);
 		myDot.show(screen);
-		myEnemy.show(screen);
+		koopa.show(screen);
 
 		//Update the screen
 		if (SDL_Flip(screen) == -1) {
