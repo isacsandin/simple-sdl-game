@@ -10,28 +10,16 @@
 Map::Map(string filename) {
 	char * xml = (char*) Utils::loadFile(filename.c_str(), true);
 	this->tmxMap = NLLoadTmxMap(xml);
-	for (int i = 0; i < tmxMap->tilesets.size(); i++) {
+	for (unsigned int i = 0; i < tmxMap->tilesets.size(); i++) {
 		tilesets[tmxMap->tilesets[i]] = Utils::load_image(
 				tmxMap->tilesets[i]->filename);
 	}
-/*	cout << tmxMap->layers[0]->width << " " << tmxMap->layers[0]->height;
-	cin.get();
-	for (int l = 0; l < tmxMap->layers.size(); l++) {
-			for (int i = 0; i < tmxMap->layers[l]->height; i++) {
-				for (int j = 0; j < tmxMap->layers[l]->width; j++) {
-					int index = i * tmxMap->layers[l]->width + j;
-					cout << tmxMap->layers[l]->data[index] << ",";
-				}
-				cout << endl;
-			}
-	}
-	cin.get();*/
 
 }
 
 void Map::show(SDL_Surface *screen, Camera *camera) {
 
-	for (int l = 0; l < tmxMap->layers.size(); l++) {
+	for (unsigned int l = 0; l < tmxMap->layers.size(); l++) {
 		for (int i = 0; i < tmxMap->layers[l]->height; i++) {
 			for (int j = 0; j < tmxMap->layers[l]->width; j++) {
 
