@@ -11,7 +11,7 @@
 #include "Sound.h"
 #include "Camera.h"
 #include "Map.h"
-
+#include "Mario.h"
 
 //The screen sttributes
 const int SCREEN_WIDTH = 640;
@@ -30,6 +30,7 @@ SDL_Surface *screen = NULL;
 //The event structure
 SDL_Event event;
 
+//Mario mario;
 
 bool init() {
 	//Initialize all SDL subsystems
@@ -67,6 +68,7 @@ int main(int argc, char* args[]) {
 		return 1;
 	}
 
+	Mario mario;
 	Map map("resources/background.tmx");
 	//Map map1("resources/background1.tmx");
 
@@ -80,18 +82,20 @@ int main(int argc, char* args[]) {
 	//Start delta timer
 	delta.start();
 
+
 	//While the user hasn't quit
 	while (quit == false) {
 
 		Uint32 ticks = delta.get_ticks();
 		camera->move(ticks);
+		mario.move(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			sound.handle_input(event);
 			camera->handleInput(event);
-
+			mario.handleInput(event);
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {
 				//Quit the program
@@ -109,7 +113,7 @@ int main(int argc, char* args[]) {
 		//Show the tiles
 		map.show(screen,camera);
 		//map1.show(screen,camera);
-
+		mario.show(screen);
 		//Update the screen
 		if (SDL_Flip(screen) == -1) {
 			return 1;

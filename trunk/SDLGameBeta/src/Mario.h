@@ -9,6 +9,7 @@
 #define MARIO_H_
 
 #include "Hero.h"
+#include "Utils.h"
 
 class Mario: public Hero {
 public:
@@ -19,6 +20,7 @@ public:
 	int shot();
 	int death();
 	void show(SDL_Surface *screen);
+	bool checkCollision(SDL_Rect rect);
 
 private:
 	 //The velocity of the dot
