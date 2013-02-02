@@ -14,7 +14,3 @@ MovableObject::MovableObject(int x,int y,int w,int h):
 MovableObject::~MovableObject() {
 }
 
-void MovableObject::move(Uint32 deltaTicks){
-	return;
-}
-
