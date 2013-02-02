@@ -12,7 +12,7 @@
 #include <SDL/SDL.h>
 #include "Utils.h"
 
-class Enemy {
+class Koopa {
 
 private:
 	SDL_Surface *koopa_l, *koopa_r;
@@ -22,8 +22,8 @@ private:
 	int moving;
 	int spriteFrame;
 public:
-	Enemy();
-	virtual ~Enemy();
+	Koopa();
+	virtual ~Koopa();
 	void move(Uint32 deltaTicks);
 	void show(SDL_Surface *screen);
 };

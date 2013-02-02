@@ -5,9 +5,9 @@
  *      Author: feliperviegas
  */
 
-#include "Enemy.h"
+#include "Koopa.h"
 
-Enemy::Enemy() {
+Koopa::Koopa(){
 	koopa_l = Utils::load_image("resources/koopa_l.png");
 	koopa_r = Utils::load_image("resources/koopa_l.png");
 	x = 100;
@@ -32,7 +32,7 @@ Enemy::Enemy() {
 	clip[2].h=default_h;
 }
 
-void Enemy::show(SDL_Surface *screen){
+void Koopa::show(SDL_Surface *screen){
 	if(moving == 0){
 		Utils::apply_surface((int) x, (int) y, koopa_l, screen,
 					&clip[spriteFrame]);
@@ -43,7 +43,7 @@ void Enemy::show(SDL_Surface *screen){
 	}
 }
 
-void Enemy::move(Uint32 deltaTicks){
+void Koopa::move(Uint32 deltaTicks){
 	spriteFrame += 1;
 	if(spriteFrame > 2)
 		spriteFrame=1;
@@ -59,7 +59,7 @@ void Enemy::move(Uint32 deltaTicks){
 
 }
 
-Enemy::~Enemy() {
+Koopa::~Koopa() {
 	SDL_FreeSurface(koopa_l);
 	SDL_FreeSurface(koopa_r);
 }
