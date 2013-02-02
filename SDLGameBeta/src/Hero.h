@@ -17,7 +17,7 @@ class Hero: public MovableObject, public VisibleObject,public GameObject {
 public:
 	Hero(int x,int y,int w,int h,int life, int damage);
 	virtual ~Hero();
-	void HandleInput();
+	virtual void handleInput(SDL_Event event) = 0;
 };
 
 #endif /* HERO_H_ */
