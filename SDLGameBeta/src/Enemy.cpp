@@ -7,8 +7,8 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(int x,int y,int w,int h,int life, int damage)
-	:MovableObject(x,y,w,h,life,damage),VisibleObject(){
+Enemy::Enemy(int x,int y,int w,int h,int life, int damage):
+	MovableObject(x,y,w,h),GameObject(life,damage){
 }
 
 Enemy::~Enemy() {

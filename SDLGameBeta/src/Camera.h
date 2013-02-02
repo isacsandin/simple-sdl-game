@@ -11,18 +11,19 @@
 #include <SDL/SDL_image.h>
 #include <string>
 #include <fstream>
+#include "MovableObject.h"
+#include "Utils.h"
 
-class Camera {
+class Camera : public MovableObject{
 
 private:
-	SDL_Rect camera;
 	int moving;
 
 public:
-	Camera(int x, int y, int screen_width, int screen_height);
-	SDL_Rect getCamera();
-	void handle_input(SDL_Event event);
+	Camera(int x, int y, int w, int h);
+	void handleInput(SDL_Event event);
 	void move(Uint32 deltaTicks);
+	bool checkCollision(SDL_Rect rect);
 	virtual ~Camera();
 };
 

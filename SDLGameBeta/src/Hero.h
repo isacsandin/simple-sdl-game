@@ -10,8 +10,9 @@
 
 #include "MovableObject.h"
 #include "VisibleObject.h"
+#include "GameObject.h"
 
-class Hero: public MovableObject, public VisibleObject {
+class Hero: public MovableObject, public VisibleObject,public GameObject {
 
 public:
 	Hero(int x,int y,int w,int h,int life, int damage);

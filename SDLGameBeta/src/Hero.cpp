@@ -8,7 +8,7 @@
 #include "Hero.h"
 
 Hero::Hero(int x,int y,int w,int h,int life, int damage) :
-		MovableObject(x,y,w,h,life, damage),VisibleObject() {
+		MovableObject(x,y,w,h),GameObject(life, damage) {
 }
 
 Hero::~Hero() {

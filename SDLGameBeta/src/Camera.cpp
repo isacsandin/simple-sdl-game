@@ -7,22 +7,13 @@
 
 #include "Camera.h"
 
-Camera::Camera(int x, int y, int screen_width, int screen_height) {
-
-	//The camera
-	camera.x = x;
-	camera.y = y;
-	camera.w = screen_width;
-	camera.h = screen_height;
+Camera::Camera(int x, int y, int w, int h):
+	MovableObject(x,y,w,h){
 	moving = 0;
 
 }
 
-SDL_Rect Camera::getCamera(){
-	return camera;
-}
-
-void Camera::handle_input(SDL_Event event)
+void Camera::handleInput(SDL_Event event)
 {
 	if( event.type == SDL_KEYDOWN )
 	{
@@ -49,9 +40,14 @@ void Camera::handle_input(SDL_Event event)
 
 void Camera::move(Uint32 deltaTicks){
 	//Scroll background
-	camera.x += (100*moving);
+	this->setX( this->getX()+(100*moving) );
 
 }
+
+bool Camera::checkCollision(SDL_Rect rect){
+	return Utils::check_collision(this->getBox(),rect);
+}
+
 
 Camera::~Camera() {
 	// TODO Auto-generated destructor stub

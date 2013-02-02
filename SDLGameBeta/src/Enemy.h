@@ -10,8 +10,9 @@
 
 #include "MovableObject.h"
 #include "VisibleObject.h"
+#include "GameObject.h"
 
-class Enemy: public MovableObject, public VisibleObject {
+class Enemy: public MovableObject, public VisibleObject, public GameObject {
 public:
 	Enemy(int x,int y,int w,int h,int life, int damage);
 	virtual ~Enemy();
