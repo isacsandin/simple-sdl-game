@@ -539,9 +539,9 @@ Dot::Dot(int screen_width, int screen_height) {
 	//Crouched
 	animations[2] = 3;
 	clip[3].x = 165;
-	clip[3].y = 225;
+	clip[3].y = 240;
 	clip[3].w = default_w + 5;
-	clip[3].h = default_h;
+	clip[3].h = default_h-25;
 
 	//Jumping
 	animations[3] = 4;
