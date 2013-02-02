@@ -23,7 +23,7 @@ private:
 public:
 	Sound();
 	virtual ~Sound();
-	int handle_input(SDL_Event event);
+	int handleInput(SDL_Event event);
 	void playEffect(string filename);
 };
 

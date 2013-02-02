@@ -93,7 +93,7 @@ int main(int argc, char* args[]) {
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
-			sound.handle_input(event);
+			sound.handleInput(event);
 			camera->handleInput(event);
 			mario.handleInput(event);
 			//If the user has Xed out the window
