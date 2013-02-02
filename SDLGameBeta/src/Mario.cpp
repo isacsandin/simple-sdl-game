@@ -7,11 +7,13 @@
 
 #include "Mario.h"
 
-Mario::Mario() {
+
+Mario::Mario():
+	Hero(0,360,40,60,100,100){
 
 	// TODO Auto-generated constructor stub
-	mario_r = Utils::load_image("resources/spriteMario_r.png");
-	mario_l = Utils::load_image("resources/spriteMario_l.png");
+	mario_r =  Utils::load_image("resources/spriteMario_r.png");
+	mario_l =  Utils::load_image("resources/spriteMario_l.png");
 
 	//Initialize the velocity
 	xVel = 50;
@@ -195,10 +197,10 @@ void Mario::move(Uint32 deltaTicks) {
 
 		if (moving == 1)
 			//Move the dot right
-			this->getBox().x += xVel * (deltaTicks / 1000.f);
+			this->setX(this->getX() + (xVel * (deltaTicks / 1000.f)));
 		else
 			//Move the dot left
-			this->getBox().x -= xVel * (deltaTicks / 1000.f);
+			this->setX(this->getX() - (xVel * (deltaTicks / 1000.f)));
 
 	}
 	/* Climbing or Crouched */
@@ -208,7 +210,7 @@ void Mario::move(Uint32 deltaTicks) {
 
 			if (climbing_s) {
 				/* Climbing DOWN*/
-				this->getBox().y += yVel * (deltaTicks / 1000.f);
+				this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 				if (sprite_frame < animations[6]
 						|| sprite_frame >= animations[7])
 					sprite_frame = animations[6];
@@ -219,14 +221,14 @@ void Mario::move(Uint32 deltaTicks) {
 			} else {
 				/* Crouched */
 				sprite_frame = animations[2];
-				this->getBox().y += yVel * (deltaTicks / 1000.f);
+				this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 			}
 		} else {
 			if (up) {
 				/* JUMP */
 				if (jump_alt <= ((animations[4] - animations[3]) - 1)
 						&& !jump_done) {
-					this->getBox().y -= yVel * (deltaTicks / 1000.f);
+					this->setY(this->getY() - (yVel * (deltaTicks / 1000.f)));
 					jump_alt += 1;
 
 					if (!jump_started) {
@@ -236,7 +238,7 @@ void Mario::move(Uint32 deltaTicks) {
 						sprite_frame += 1;
 				} else {
 					jump_done = true;
-					this->getBox().y += yVel * (deltaTicks / 1000.f);
+					this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 					jump_alt -= 1;
 					sprite_frame -= 1;
 
@@ -249,14 +251,15 @@ void Mario::move(Uint32 deltaTicks) {
 				}
 
 				if (moving == -1 || moving == 1)
-					this->getBox().x += xVel * (deltaTicks / 1000.f);
+					this->setX(this->getX() + (xVel * (deltaTicks / 1000.f)));
 				else if (moving == -2 || moving == 2)
-					this->getBox().x -= xVel * (deltaTicks / 1000.f);
+					this->setX(this->getX() - (xVel * (deltaTicks / 1000.f)));
 
 			} else {
 				/* Climbing UP */
 				if (climbing_s && up_s) {
-					this->getBox().y -= yVel * (deltaTicks / 1000.f);
+					this->setY(this->getY() - (yVel * (deltaTicks / 1000.f)));
+
 					if (sprite_frame < animations[6]
 							|| sprite_frame >= animations[7])
 						sprite_frame = animations[6];
@@ -317,7 +320,7 @@ int Mario::death() {
 }
 
 void Mario::show(SDL_Surface *screen) {
-	SDL_Rect offset;
+
 	if (moving == 2 || moving == -2) {
 		Utils::apply_surface((int) this->getBox().x, (int) this->getBox().y,
 				mario_l, screen, &clip[sprite_frame]);
@@ -326,4 +329,8 @@ void Mario::show(SDL_Surface *screen) {
 				mario_r, screen, &clip[sprite_frame]);
 	}
 
+}
+
+bool Mario::checkCollision(SDL_Rect rect){
+	return Utils::check_collision(this->getBox(),rect);
 }
