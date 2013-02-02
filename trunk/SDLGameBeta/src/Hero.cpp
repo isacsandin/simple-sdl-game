@@ -14,7 +14,3 @@ Hero::Hero(int x,int y,int w,int h,int life, int damage) :
 Hero::~Hero() {
 	// TODO Auto-generated destructor stub
 }
-
-void Hero::HandleInput() {
-
-}
