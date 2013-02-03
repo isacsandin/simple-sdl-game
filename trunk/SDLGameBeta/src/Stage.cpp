@@ -37,9 +37,11 @@ void Stage::loop(){
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			sound->handleInput(event);
-			camera->handleInput(event);
-			if(handle)
+			if(handle){
 				mario->handleInput(event);
+				camera->handleInput(event);
+			}
+
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {
 				//Quit the program
