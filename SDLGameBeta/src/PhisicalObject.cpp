@@ -24,4 +24,8 @@ PhisicalObject::~PhisicalObject() {
 	// TODO Auto-generated destructor stub
 }
 
+bool PhisicalObject::checkCollision(SDL_Rect rect){
+	return false;
+}
+
 

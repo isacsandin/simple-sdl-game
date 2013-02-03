@@ -23,7 +23,7 @@ public:
 	PhisicalObject(int x,int y,int w,int h);
 	virtual ~PhisicalObject();
 
-	virtual bool checkCollision(SDL_Rect rect) = 0;
+	virtual bool checkCollision(SDL_Rect rect);
 
 	SDL_Rect getBox(){
 		return box;

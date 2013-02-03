@@ -31,6 +31,7 @@ void Stage::loop(){
 		camera->move(ticks);
 		mario->move(ticks);
 		koopa->move(ticks);
+		mario->gravity(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {

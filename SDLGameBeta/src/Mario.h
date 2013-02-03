@@ -10,8 +10,9 @@
 
 #include "Hero.h"
 #include "Utils.h"
+#include "Physics.h"
 
-class Mario: public Hero {
+class Mario: public Hero, public Physics {
 public:
 	Mario();
 	virtual ~Mario();
@@ -23,7 +24,8 @@ public:
 	bool checkCollision(SDL_Rect rect);
 	void setXVel(int xVel);
 	int life;
-
+	void gravity(Uint32 dt);
+	void impulse(Uint32 dt);
 private:
 	 //The velocity of the dot
 	    float xVel, yVel;
