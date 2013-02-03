@@ -66,6 +66,7 @@ int main(int argc, char* args[]) {
 
 	stage1.loop();
 
+	//teste
     Mix_CloseAudio();
 	SDL_Quit();
 
