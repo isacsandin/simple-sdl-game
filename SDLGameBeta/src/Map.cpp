@@ -88,6 +88,10 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 
 }
 
+NLTmxMap *Map::getMap(){
+	return tmxMap;
+}
+
 NLTmxMapLayer * Map::getCollisionLayer() {
 	if (tmxMap->layers.size() > 1)
 		return tmxMap->layers[1];

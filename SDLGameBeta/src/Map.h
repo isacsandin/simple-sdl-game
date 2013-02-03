@@ -25,6 +25,7 @@ public:
 	Map(string filename);
 	virtual ~Map();
 	void show(SDL_Surface *screen,Camera *camera);
+	NLTmxMap * getMap();
 	NLTmxMapLayer * getCollisionLayer();
 };
 
