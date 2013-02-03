@@ -8,7 +8,7 @@
 #include "Koopa.h"
 
 Koopa::Koopa():
-	Enemy(500,380,40,53,100,100){
+	Enemy(500,395,40,53,100,100){
 	koopa_l = Utils::load_image("resources/koopa_l.png");
 	koopa_r = Utils::load_image("resources/koopa_l.png");
 	moving = 1;

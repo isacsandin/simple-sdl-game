@@ -15,4 +15,9 @@ CheckPointBlock::~CheckPointBlock() {
 	// TODO Auto-generated destructor stub
 }
 
+bool CheckPointBlock::checkCollision(SDL_Rect rect){
+	return Utils::check_collision(this->getBox(),rect);
+}
+
+
 

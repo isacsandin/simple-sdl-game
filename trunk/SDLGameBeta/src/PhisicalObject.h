@@ -25,7 +25,7 @@ public:
 
 	virtual bool checkCollision(SDL_Rect rect) = 0;
 
-	const SDL_Rect& getBox() const {
+	SDL_Rect getBox(){
 		return box;
 	}
 

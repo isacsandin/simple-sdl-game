@@ -11,6 +11,7 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
+#include <cmath>
 #include <string>
 #include <map>
 #include "NLTmxMap.h"
@@ -20,11 +21,11 @@
 class Map {
 private:
 	NLTmxMap* tmxMap;
-	map<NLTmxMapTileset *,SDL_Surface *> tilesets;
 public:
 	Map(string filename);
 	virtual ~Map();
 	void show(SDL_Surface *screen,Camera *camera);
+	NLTmxMapLayer * getCollisionLayer();
 };
 
 #endif /* MAP_H_ */
