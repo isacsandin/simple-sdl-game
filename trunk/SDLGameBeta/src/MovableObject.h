@@ -16,8 +16,9 @@
 #include <string>
 #include "PhisicalObject.h"
 #include "Timer.h"
+#include "Physics.h"
 
-class MovableObject: public PhisicalObject {
+class MovableObject: public PhisicalObject{
 public:
 	MovableObject(int x, int y, int w, int h);
 	virtual ~MovableObject();

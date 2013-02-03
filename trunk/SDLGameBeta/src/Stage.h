@@ -18,6 +18,7 @@
 #include "Map.h"
 #include "Mario.h"
 #include "Koopa.h"
+#include "Physics.h"
 #include "CheckPointBlock.h"
 
 class Stage {
@@ -28,6 +29,7 @@ private:
 	Timer *timer;
 	Camera *camera;
 	Sound *sound;
+	Physics *physics;
 	CheckPointBlock *begin, *end;
 	SDL_Surface *screen;
 	SDL_Event event;

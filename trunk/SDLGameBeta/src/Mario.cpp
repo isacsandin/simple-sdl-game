@@ -349,3 +349,14 @@ bool Mario::checkCollision(SDL_Rect rect){
 void Mario::setXVel(int xVel){
 	this->xVel = xVel;
 }
+
+void Mario::gravity(Uint32 dt){
+
+		this->setY(this->getY() + ( getAcGravity() * (dt / 1000.f)));
+}
+
+
+void Mario::impulse(Uint32 dt){
+
+
+}
