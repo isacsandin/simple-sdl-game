@@ -14,6 +14,8 @@ Mario::Mario():
 	mario_r =  Utils::load_image("resources/spriteMario_r.png");
 	mario_l =  Utils::load_image("resources/spriteMario_l.png");
 
+	life = 100;
+
 	//Initialize the velocity
 	xVel = 50;
 	yVel = 150;
@@ -268,7 +270,7 @@ void Mario::move(Uint32 deltaTicks) {
 						sprite_frame = animations[6];
 				} else {
 
-					if (!death())
+					//if (!death())
 						if (!shot())
 							sprite_frame = animations[1];
 				}
@@ -298,25 +300,31 @@ int Mario::shot() {
 	return 1;
 }
 
-int Mario::death() {
-	if (death_s) {
-		if (!death_started) {
-			sprite_frame = animations[5];
-			death_started = true;
-		} else {
-			if (sprite_frame == animations[6] - 1) {
-				//death_s = false;
-				death_started = false;
-				//sprite_frame = animations[1];
-			} else
-				sprite_frame += 1;
-		}
-	} else
-		return 0;
+//int Mario::death() {
+//	if (death_s) {
+//		if (!death_started) {
+//			sprite_frame = animations[5];
+//			death_started = true;
+//		} else {
+//			if (sprite_frame == animations[6] - 1) {
+//				death_s = false;
+//				death_started = false;
+//				sprite_frame = animations[1];
+//			} else{
+//				sprite_frame = animations[1];
+//			  }
+//		}
+//	} else
+//		return 0;
+//
+//	return 1;
+//}
 
-	return 1;
-
+void Mario::death(){
+	moving = 3;
+	return;
 }
+
 
 void Mario::show(SDL_Surface *screen) {
 
@@ -327,9 +335,17 @@ void Mario::show(SDL_Surface *screen) {
 		Utils::apply_surface((int) this->getBox().x, (int) this->getBox().y,
 				mario_r, screen, &clip[sprite_frame]);
 	}
+	if(moving == 3){
+		Utils::apply_surface((int) this->getBox().x, (int) this->getBox().y,
+						mario_r, screen, &clip[animations[5]]);
+	}
 
 }
 
 bool Mario::checkCollision(SDL_Rect rect){
 	return Utils::check_collision(this->getBox(),rect);
+}
+
+void Mario::setXVel(int xVel){
+	this->xVel = xVel;
 }
