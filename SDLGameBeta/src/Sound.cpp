@@ -7,10 +7,10 @@
 
 #include "Sound.h"
 
-Sound::Sound() {
+Sound::Sound(string filename) {
 	//The music that will be played
 	music = NULL;
-	music = Mix_LoadMUS("resources/sound/mp.wav");
+	music = Mix_LoadMUS(filename.c_str());
 	Mix_PlayMusic(music, -1);
 
 }
