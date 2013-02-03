@@ -150,11 +150,12 @@ int main(int argc, char* args[]) {
 		mario.show(screen);
 		koopa.show(screen);
 
-
-		SDL_FillRect(screen, &begin.getBox(),
+		SDL_Rect rect = begin.getBox();
+		SDL_FillRect(screen, &rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
-		SDL_FillRect(screen, &end.getBox(),
+		rect = end.getBox();
+		SDL_FillRect(screen, &rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
 
