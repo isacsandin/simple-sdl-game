@@ -22,6 +22,7 @@ public:
     string filename;
     int width;
     int height;
+    SDL_Surface * surface;
 };
 
 
@@ -31,7 +32,8 @@ public:
     int width;
     int height;
     int* data;
-    
+
+
     ~NLTmxMapLayer() {
         delete [] data;
     }
@@ -136,6 +138,7 @@ inline NLTmxMap* NLLoadTmxMap( char *xml )
         tileset->filename = tilesetnode->first_node( "image" )->first_attribute( "source" )->value();
         tileset->width = atoi( tilesetnode->first_node( "image" )->first_attribute( "width" )->value() );
         tileset->height = atoi( tilesetnode->first_node( "image" )->first_attribute( "height" )->value() );
+        tileset->surface = NULL;
         //cout << "Tileset " << tileset->name << " filename " << tileset->filename << endl;
 
         map->tilesets.push_back( tileset );

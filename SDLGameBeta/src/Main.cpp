@@ -13,6 +13,7 @@
 #include "Map.h"
 #include "Mario.h"
 #include "Koopa.h"
+#include "CheckPointBlock.h"
 
 //The screen sttributes
 const int SCREEN_WIDTH = 640;
@@ -69,19 +70,21 @@ int main(int argc, char* args[]) {
 		return 1;
 	}
 
-	Mario mario;
-	Koopa koopa;
-
 	Map map("resources/fase_teste.tmx");
 	//Map map("resources/background.tmx");
 	//Map map1("resources/background1.tmx");
 
 	Sound sound;
-
 	Camera *camera = new Camera(0, 0,SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	//Keeps track of time since last rendering
 	Timer delta;
+
+	Mario mario;
+	Koopa koopa;
+	CheckPointBlock begin(10,380,10,100);
+	CheckPointBlock end(3160,380,10,100);
+
 
 	//Start delta timer
 	delta.start();
@@ -115,11 +118,46 @@ int main(int argc, char* args[]) {
 		SDL_FillRect(screen, &screen->clip_rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
+
+
+		if (camera->checkCollision(begin.getBox())){
+			camera->setX(camera->getX() + 20);
+		}
+
+		if (mario.checkCollision(begin.getBox())){
+			mario.setX(mario.getX() + 20);
+		}
+		if (koopa.checkCollision(begin.getBox())){
+			koopa.setX(koopa.getX() + 20);
+		}
+
+
+		if (camera->checkCollision(end.getBox())){
+			camera->setX(camera->getX() - 20);
+		}
+
+		if (mario.checkCollision(end.getBox())){
+			mario.setX(mario.getX() - 20);
+		}
+		if (koopa.checkCollision(end.getBox())){
+			koopa.setX(koopa.getX() - 20);
+		}
+
+
 		//Show the tiles
 		map.show(screen,camera);
 		//map1.show(screen,camera);
 		mario.show(screen);
 		koopa.show(screen);
+
+
+		SDL_FillRect(screen, &begin.getBox(),
+				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
+
+		SDL_FillRect(screen, &end.getBox(),
+				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
+
+
 		//Update the screen
 		if (SDL_Flip(screen) == -1) {
 			return 1;
