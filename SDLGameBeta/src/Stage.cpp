@@ -32,6 +32,7 @@ void Stage::loop(){
 		mario->move(ticks);
 		koopa->move(ticks);
 		mario->gravity(ticks);
+		//koopa->gravity(ticks);
 
 		//While there's events to handle
 		while (SDL_PollEvent(&event)) {
@@ -82,6 +83,9 @@ void Stage::loop(){
 				handle = false;
 			}
 		}
+
+		//id 10 chão
+		//id 20 bloco
 
 		if (mario->checkCollision(end->getBox())){
 			mario->setX(mario->getX() - 20);
