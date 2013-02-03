@@ -21,7 +21,7 @@ private:
 	Mix_Music *music;
 
 public:
-	Sound();
+	Sound(string filename);
 	virtual ~Sound();
 	int handleInput(SDL_Event event);
 	void playEffect(string filename);
