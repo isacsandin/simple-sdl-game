@@ -18,9 +18,11 @@ public:
 	void handleInput(SDL_Event event);
 	void move(Uint32 deltaTicks);
 	int shot();
-	int death();
+	void death();
 	void show(SDL_Surface *screen);
 	bool checkCollision(SDL_Rect rect);
+	void setXVel(int xVel);
+	int life;
 
 private:
 	 //The velocity of the dot

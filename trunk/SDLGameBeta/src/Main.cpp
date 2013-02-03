@@ -65,6 +65,7 @@ bool init() {
 int main(int argc, char* args[]) {
 	//Quit flag
 	bool quit = false;
+	bool handle = true;
 	//Initialize
 	if (init() == false) {
 		return 1;
@@ -83,7 +84,7 @@ int main(int argc, char* args[]) {
 	Mario mario;
 	Koopa koopa;
 	CheckPointBlock begin(10,380,10,100);
-	CheckPointBlock end(3160,380,10,100);
+	CheckPointBlock end(400,380,10,100);
 
 
 	//Start delta timer
@@ -103,7 +104,8 @@ int main(int argc, char* args[]) {
 			//Handle events for the dot
 			sound.handleInput(event);
 			camera->handleInput(event);
-			mario.handleInput(event);
+			if(handle)
+				mario.handleInput(event);
 			//If the user has Xed out the window
 			if (event.type == SDL_QUIT) {
 				//Quit the program
@@ -119,21 +121,30 @@ int main(int argc, char* args[]) {
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
 
-
 		if (camera->checkCollision(begin.getBox())){
-			camera->setX(camera->getX() + 20);
+			camera->setX(camera->getX() +100);
 		}
 
 		if (mario.checkCollision(begin.getBox())){
 			mario.setX(mario.getX() + 20);
 		}
-		if (koopa.checkCollision(begin.getBox())){
-			koopa.setX(koopa.getX() + 20);
-		}
+//		if (koopa.checkCollision(begin.getBox())){
+//			koopa.setX(koopa.getX() + 20);
+//		}
 
 
-		if (camera->checkCollision(end.getBox())){
-			camera->setX(camera->getX() - 20);
+//		if (camera->checkCollision(end.getBox())){
+//			camera->setX(camera->getX() -0);
+//		}
+
+		if (mario.checkCollision(koopa.getBox())){
+			mario.setX(mario.getX() -10);
+			mario.life -= 40;
+			if(mario.life <= 0){
+				mario.death();
+				mario.setXVel(0);
+				handle = false;
+			}
 		}
 
 		if (mario.checkCollision(end.getBox())){
