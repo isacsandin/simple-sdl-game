@@ -343,6 +343,7 @@ void Mario::show(SDL_Surface *screen) {
 }
 
 bool Mario::checkCollision(SDL_Rect rect){
+
 	return Utils::check_collision(this->getBox(),rect);
 }
 

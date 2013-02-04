@@ -13,7 +13,7 @@ Stage::Stage(SDL_Surface *screen) {
 	this->screenHeight = screen->h;
 }
 
-void Stage::loop(){
+void Stage::loop() {
 
 	//The frame rate
 	const int FRAMES_PER_SECOND = 8;
@@ -22,7 +22,6 @@ void Stage::loop(){
 	bool handle = true;
 	//Start delta timer
 	timer->start();
-
 
 	//While the user hasn't quit
 	while (quit == false) {
@@ -38,7 +37,7 @@ void Stage::loop(){
 		while (SDL_PollEvent(&event)) {
 			//Handle events for the dot
 			sound->handleInput(event);
-			if(handle){
+			if (handle) {
 				mario->handleInput(event);
 				camera->handleInput(event);
 			}
@@ -57,27 +56,25 @@ void Stage::loop(){
 		SDL_FillRect(screen, &screen->clip_rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
-
-		if (camera->checkCollision(begin->getBox())){
-			camera->setX(camera->getX() +100);
+		if (camera->checkCollision(begin->getBox())) {
+			camera->setX(camera->getX() + 100);
 		}
 
-		if (mario->checkCollision(begin->getBox())){
+		if (mario->checkCollision(begin->getBox())) {
 			mario->setX(mario->getX() + 20);
 		}
 //		if (koopa.checkCollision(begin.getBox())){
 //			koopa.setX(koopa.getX() + 20);
 //		}
 
-
 //		if (camera->checkCollision(end.getBox())){
 //			camera->setX(camera->getX() -0);
 //		}
 
-		if (mario->checkCollision(koopa->getBox())){
-			mario->setX(mario->getX() -10);
+		if (mario->checkCollision(koopa->getBox())) {
+			mario->setX(mario->getX() - 10);
 			mario->life -= 40;
-			if(mario->life <= 0){
+			if (mario->life <= 0) {
 				mario->death();
 				mario->setXVel(0);
 				handle = false;
@@ -86,17 +83,36 @@ void Stage::loop(){
 
 		//id 10 chão
 		//id 20 bloco
+		NLTmxMapLayer *layer = map->getCollisionLayer();
+		for (int h = 0; h < layer->height; h++) {
+			for (int w = 0; w < layer->width; w++) {
 
-		if (mario->checkCollision(end->getBox())){
+				int index = h * layer->width + w;
+				int gid = layer->data[index];
+
+				if(gid != 0){
+					int tilesetId = map->getTilesetId(gid);
+					int local_id = gid - map->getMap()->tilesets[tilesetId]->firstGid;
+
+					if(local_id == 10 || local_id == 20){
+						SDL_Rect tile = map->getLocalRect(gid,tilesetId);
+						cout << tile.x << " " << tile.y << endl;
+						if(mario->checkCollision(tile)){
+
+						}
+					}
+				}
+			}
+		}
+		if (mario->checkCollision(end->getBox())) {
 			mario->setX(mario->getX() - 20);
 		}
-		if (koopa->checkCollision(end->getBox())){
+		if (koopa->checkCollision(end->getBox())) {
 			koopa->setX(koopa->getX() - 20);
 		}
 
-
 		//Show the tiles
-		map->show(screen,camera);
+		map->show(screen, camera);
 		//map1.show(screen,camera);
 		mario->show(screen);
 		koopa->show(screen);
@@ -108,7 +124,6 @@ void Stage::loop(){
 		rect = end->getBox();
 		SDL_FillRect(screen, &rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
-
 
 		//Update the screen
 		if (SDL_Flip(screen) == -1) {
