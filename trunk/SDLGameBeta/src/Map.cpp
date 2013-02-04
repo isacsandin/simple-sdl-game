@@ -20,16 +20,16 @@ Map::Map(string filename) {
 void Map::show(SDL_Surface *screen, Camera *camera) {
 
 	for (unsigned int l = 0; l < tmxMap->layers.size(); l++) {
-		for (int i = 0; i < tmxMap->layers[l]->height; i++) {
+		for (int i = 0; i < tmxMap->layers[l]->width; i++) {
 
 			//int initial_index = floor(( tmxMap->layers[l]->width*camera->getX() ) / tmxMap->width)-1;
 			//int final_index = ceil(( tmxMap->layers[l]->width* ( camera->getX() + camera->getW() ) ) / tmxMap->width)+1;
 
 			//for (int j = initial_index; j < final_index; j++) {
 
-			for (int j = 0; j < tmxMap->layers[l]->width; j++) {
+			for (int j = 0; j < tmxMap->layers[l]->height; j++) {
 
-				int index = i * tmxMap->layers[l]->width + j;
+				int index = j * tmxMap->layers[l]->width + i;
 
 				int source_tileset = getTilesetId(tmxMap->layers[l]->data[index]);
 
@@ -105,8 +105,8 @@ SDL_Rect Map::getLocalRect(int gid, int tilesetId) {
 
 SDL_Rect Map::getGlobalRect(int i,int j,int tilesetId){
 	SDL_Rect rect_screen;
-	rect_screen.x = j * tmxMap->tilesets[tilesetId]->tileWidth;
-	rect_screen.y = i * tmxMap->tilesets[tilesetId]->tileHeight;
+	rect_screen.x = i * tmxMap->tilesets[tilesetId]->tileWidth;
+	rect_screen.y = j * tmxMap->tilesets[tilesetId]->tileHeight;
 	rect_screen.w = tmxMap->tilesets[tilesetId]->tileWidth;
 	rect_screen.h = tmxMap->tilesets[tilesetId]->tileHeight;
 	return rect_screen;
