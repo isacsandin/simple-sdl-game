@@ -56,13 +56,13 @@ void Stage::loop() {
 		SDL_FillRect(screen, &screen->clip_rect,
 				SDL_MapRGB(screen->format, 0xFF, 0xFF, 0xFF));
 
-		if (camera->checkCollision(begin->getBox())) {
-			camera->setX(camera->getX() + 100);
-		}
-
-		if (mario->checkCollision(begin->getBox())) {
-			mario->setX(mario->getX() + 20);
-		}
+//		if (camera->checkCollision(begin->getBox())) {
+//			camera->setX(camera->getX() + 100);
+//		}
+//
+//		if (mario->checkCollision(begin->getBox())) {
+//			mario->setX(mario->getX() + 20);
+//		}
 //		if (koopa.checkCollision(begin.getBox())){
 //			koopa.setX(koopa.getX() + 20);
 //		}
@@ -71,15 +71,15 @@ void Stage::loop() {
 //			camera->setX(camera->getX() -0);
 //		}
 
-		if (mario->checkCollision(koopa->getBox())) {
-			mario->setX(mario->getX() - 10);
-			mario->life -= 40;
-			if (mario->life <= 0) {
-				mario->death();
-				mario->setXVel(0);
-				handle = false;
-			}
-		}
+//		if (mario->checkCollision(koopa->getBox())) {
+//			mario->setX(mario->getX() - 10);
+//			mario->life -= 40;
+//			if (mario->life <= 0) {
+//				mario->death();
+//				mario->setXVel(0);
+//				handle = false;
+//			}
+//		}
 		//id 10 chão
 		//id 20 bloco
 		NLTmxMapLayer *layer = map->getCollisionLayer();
@@ -100,26 +100,22 @@ void Stage::loop() {
 
 					if (local_id == 10 || local_id == 20) {
 						SDL_Rect tile = map->getGlobalRect(w,h,tilesetId);
-						cout << gid << " {" << w << " " << h << "} {" << tile.x << " " << tile.y << "} {" << mario->getX()
-								<< " " << mario->getY() << "}";
 						if (mario->checkCollision(tile)) {
-							cout << "colidiu!" << endl;
 						}
-						else cout << "nao colidiu!" << endl;
 					}
 				}
 			}
 		}
 
-		cout << "=========================================" << endl;
-		cin.get();
+		//cout << "=========================================" << endl;
+		//cin.get();
 
-		if (mario->checkCollision(end->getBox())) {
-			mario->setX(mario->getX() - 20);
-		}
-		if (koopa->checkCollision(end->getBox())) {
-			koopa->setX(koopa->getX() - 20);
-		}
+//		if (mario->checkCollision(end->getBox())) {
+//			mario->setX(mario->getX() - 20);
+//		}
+//		if (koopa->checkCollision(end->getBox())) {
+//			koopa->setX(koopa->getX() - 20);
+//		}
 
 		//Show the tiles
 		map->show(screen, camera);

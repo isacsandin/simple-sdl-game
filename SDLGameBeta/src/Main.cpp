@@ -62,7 +62,7 @@ int main(int argc, char* args[]) {
 	stage1.setMario(new Mario());
 	stage1.setKoopa(new Koopa());
 	stage1.setCheckpointBegin(new CheckPointBlock(10,380,10,100));
-	stage1.setCheckpointEnd(new CheckPointBlock(400,380,10,100));
+	stage1.setCheckpointEnd(new CheckPointBlock(620,380,10,100));
 
 	stage1.loop();
 
