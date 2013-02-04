@@ -84,9 +84,6 @@ void Stage::loop() {
 		//id 20 bloco
 		NLTmxMapLayer *layer = map->getCollisionLayer();
 
-		cout << layer->width << " " << layer->height << " " << layer->width*32 << " " << layer->height*32 << endl;
-		//cin.get();
-
 		for (int h = 0; h < layer->height; h++) {
 			for (int w = 0; w < layer->width; w++) {
 
@@ -98,9 +95,10 @@ void Stage::loop() {
 					int local_id = gid
 							- map->getMap()->tilesets[tilesetId]->firstGid;
 
-					if (local_id == 10 || local_id == 20) {
+					if (local_id == 10) {
 						SDL_Rect tile = map->getGlobalRect(w,h,tilesetId);
 						if (mario->checkCollision(tile)) {
+							mario->setH(tile.y + mario->getH());
 						}
 					}
 				}
