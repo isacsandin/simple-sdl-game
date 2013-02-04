@@ -28,6 +28,7 @@ public:
 	NLTmxMap * getMap();
 	int getTilesetId(int gid);
 	SDL_Rect getLocalRect(int gid,int tilesetId);
+	SDL_Rect getGlobalRect(int i,int j,int tilesetId);
 	NLTmxMapLayer * getCollisionLayer();
 };
 

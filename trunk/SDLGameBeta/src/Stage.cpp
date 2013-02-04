@@ -80,30 +80,40 @@ void Stage::loop() {
 				handle = false;
 			}
 		}
-
 		//id 10 chão
 		//id 20 bloco
 		NLTmxMapLayer *layer = map->getCollisionLayer();
+
+		cout << layer->width << " " << layer->height << " " << layer->width*32 << " " << layer->height*32 << endl;
+		//cin.get();
+
 		for (int h = 0; h < layer->height; h++) {
 			for (int w = 0; w < layer->width; w++) {
 
 				int index = h * layer->width + w;
 				int gid = layer->data[index];
 
-				if(gid != 0){
+				if (gid != 0) {
 					int tilesetId = map->getTilesetId(gid);
-					int local_id = gid - map->getMap()->tilesets[tilesetId]->firstGid;
+					int local_id = gid
+							- map->getMap()->tilesets[tilesetId]->firstGid;
 
-					if(local_id == 10 || local_id == 20){
-						SDL_Rect tile = map->getLocalRect(gid,tilesetId);
-						cout << tile.x << " " << tile.y << endl;
-						if(mario->checkCollision(tile)){
-
+					if (local_id == 10 || local_id == 20) {
+						SDL_Rect tile = map->getGlobalRect(w,h,tilesetId);
+						cout << gid << " {" << w << " " << h << "} {" << tile.x << " " << tile.y << "} {" << mario->getX()
+								<< " " << mario->getY() << "}";
+						if (mario->checkCollision(tile)) {
+							cout << "colidiu!" << endl;
 						}
+						else cout << "nao colidiu!" << endl;
 					}
 				}
 			}
 		}
+
+		cout << "=========================================" << endl;
+		cin.get();
+
 		if (mario->checkCollision(end->getBox())) {
 			mario->setX(mario->getX() - 20);
 		}
