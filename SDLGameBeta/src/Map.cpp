@@ -36,14 +36,11 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 				if (source_tileset != -1) {
 				SDL_Rect rect_tileset = getLocalRect(
 						tmxMap->layers[l]->data[index], source_tileset);
-				SDL_Rect rect_screen;
 
+					SDL_Rect rect_screen;
 					//rect screen é a posição que o tile vai ser colado na tela
 					// este é o rect que deve ser checado por colisão com a câmera
-					rect_screen.x = j * tmxMap->tilesets[source_tileset]->tileWidth;
-					rect_screen.y = i * tmxMap->tilesets[source_tileset]->tileHeight;
-					rect_screen.w = tmxMap->tilesets[source_tileset]->tileWidth;
-					rect_screen.h = tmxMap->tilesets[source_tileset]->tileHeight;
+					rect_screen = getGlobalRect(i,j,source_tileset);
 					if (camera->checkCollision(rect_screen) == true) {
 
 						Utils::apply_surface(rect_screen.x - camera->getBox().x,
@@ -104,6 +101,16 @@ SDL_Rect Map::getLocalRect(int gid, int tilesetId) {
 	rect_tileset.h = tmxMap->tilesets[tilesetId]->tileHeight;
 
 	return rect_tileset;
+}
+
+SDL_Rect Map::getGlobalRect(int i,int j,int tilesetId){
+	SDL_Rect rect_screen;
+	rect_screen.x = j * tmxMap->tilesets[tilesetId]->tileWidth;
+	rect_screen.y = i * tmxMap->tilesets[tilesetId]->tileHeight;
+	rect_screen.w = tmxMap->tilesets[tilesetId]->tileWidth;
+	rect_screen.h = tmxMap->tilesets[tilesetId]->tileHeight;
+	return rect_screen;
+
 }
 
 NLTmxMap *Map::getMap() {
