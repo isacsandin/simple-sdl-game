@@ -45,9 +45,6 @@ int Sound::handleInput(SDL_Event event) {
 			//Stop the music
 			Mix_HaltMusic();
 			break;
-		case SDLK_SPACE:
-			playEffect("resources/scratch.wav");
-			break;
 		default:
 			break;
 		}
@@ -63,10 +60,11 @@ void Sound::playEffect(string filename) {
 		cerr << "Unable to load WAV file: " <<  Mix_GetError() << endl;
 	}
 
-
+	Mix_PauseMusic();
 	if(Mix_PlayChannel(-1, effect, 0) == -1) {
 		cerr << "Unable to play WAV file: " << Mix_GetError() << endl;
 	}
+	Mix_ResumeMusic();
 	Mix_FreeChunk(effect);
 
 }

@@ -20,13 +20,11 @@ Map::Map(string filename) {
 void Map::show(SDL_Surface *screen, Camera *camera) {
 
 	for (unsigned int l = 0; l < tmxMap->layers.size(); l++) {
+		//int initial_index = floor(( tmxMap->layers[l]->width*camera->getX() ) / tmxMap->width);
+		//int final_index = ceil(( tmxMap->layers[l]->width* ( camera->getX() + camera->getW() ) ) / tmxMap->width);
+
+		//for (int i = initial_index; i < final_index; i++) {
 		for (int i = 0; i < tmxMap->layers[l]->width; i++) {
-
-			//int initial_index = floor(( tmxMap->layers[l]->width*camera->getX() ) / tmxMap->width)-1;
-			//int final_index = ceil(( tmxMap->layers[l]->width* ( camera->getX() + camera->getW() ) ) / tmxMap->width)+1;
-
-			//for (int j = initial_index; j < final_index; j++) {
-
 			for (int j = 0; j < tmxMap->layers[l]->height; j++) {
 
 				int index = j * tmxMap->layers[l]->width + i;
@@ -34,12 +32,12 @@ void Map::show(SDL_Surface *screen, Camera *camera) {
 				int source_tileset = getTilesetId(tmxMap->layers[l]->data[index]);
 
 				if (source_tileset != -1) {
-				SDL_Rect rect_tileset = getLocalRect(
+					SDL_Rect rect_tileset = getLocalRect(
 						tmxMap->layers[l]->data[index], source_tileset);
 
-					SDL_Rect rect_screen;
 					//rect screen é a posição que o tile vai ser colado na tela
 					// este é o rect que deve ser checado por colisão com a câmera
+					SDL_Rect rect_screen;
 					rect_screen = getGlobalRect(i,j,source_tileset);
 					if (camera->checkCollision(rect_screen) == true) {
 
