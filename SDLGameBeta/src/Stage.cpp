@@ -39,7 +39,7 @@ void Stage::loop() {
 			sound->handleInput(event);
 			if (handle) {
 				mario->handleInput(event);
-				camera->handleInput(event);
+				//camera->handleInput(event);
 			}
 
 			//If the user has Xed out the window
@@ -95,25 +95,41 @@ void Stage::loop() {
 					int local_id = gid
 							- map->getMap()->tilesets[tilesetId]->firstGid;
 
-					if (local_id == 10) {
-						SDL_Rect tile = map->getGlobalRect(w,h,tilesetId);
+					if (gid == 308) {
+						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
+						if (mario->checkCollision(tile)) { // MORREU!
+							mario->life = 0;
+							if (mario->life <= 0) {
+								mario->death();
+								mario->setXVel(0);
+								handle = false;
+							}
+						}
+					} else if (gid == 321) {
+						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
 						if (mario->checkCollision(tile)) {
-							mario->setH(tile.y + mario->getH());
+							mario->setX(mario->getXOld());
+							//mario->setY(mario->getYOld());
+							cout << "PEDRINHA PORRA!!  " << gid << endl;
+						}
+					} else if (gid == 311) {
+						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
+						if (mario->checkCollision(tile)) {
+							cout << "COLIDIU PORRA!!  " << gid << endl;
+							mario->setY(tile.y - mario->getH());
+							break;
 						}
 					}
 				}
 			}
 		}
 
-		//cout << "=========================================" << endl;
-		//cin.get();
-
-//		if (mario->checkCollision(end->getBox())) {
-//			mario->setX(mario->getX() - 20);
-//		}
-//		if (koopa->checkCollision(end->getBox())) {
-//			koopa->setX(koopa->getX() - 20);
-//		}
+		if (mario->checkCollision(end->getBox())) {
+			mario->setX(mario->getX() - 20);
+		}
+		if (koopa->checkCollision(end->getBox())) {
+			koopa->setX(koopa->getX() - 20);
+		}
 
 		//Show the tiles
 		map->show(screen, camera);
