@@ -27,8 +27,10 @@ void Stage::loop() {
 	while (quit == false) {
 
 		Uint32 ticks = timer->get_ticks();
-		camera->move(ticks);
-		mario->move(ticks);
+		if(handle){
+			camera->move(ticks);
+			mario->move(ticks);
+		}
 		koopa->move(ticks);
 		mario->gravity(ticks);
 		//koopa->gravity(ticks);
@@ -39,7 +41,7 @@ void Stage::loop() {
 			sound->handleInput(event);
 			if (handle) {
 				mario->handleInput(event);
-				//camera->handleInput(event);
+				camera->handleInput(event);
 			}
 
 			//If the user has Xed out the window
@@ -97,16 +99,23 @@ void Stage::loop() {
 
 					if (gid == 308) {
 						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
+						tile.x -= camera->getBox().x;
+						tile.y -= camera->getBox().y;
+
 						if (mario->checkCollision(tile)) { // MORREU!
 							mario->life = 0;
 							if (mario->life <= 0) {
 								mario->death();
 								mario->setXVel(0);
+								sound->playEffect("resources/sound/mario_deth.wav");
 								handle = false;
 							}
 						}
 					} else if (gid == 321) {
-						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
+						SDL_Rect tile = map->getGlobalRect(w , h, tilesetId);
+						tile.x -= camera->getBox().x;
+						tile.y -= camera->getBox().y;
+
 						if (mario->checkCollision(tile)) {
 							mario->setX(mario->getXOld());
 							//mario->setY(mario->getYOld());
@@ -114,6 +123,8 @@ void Stage::loop() {
 						}
 					} else if (gid == 311) {
 						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
+						tile.x -= camera->getBox().x;
+						tile.y -= camera->getBox().y;
 						if (mario->checkCollision(tile)) {
 							cout << "COLIDIU PORRA!!  " << gid << endl;
 							mario->setY(tile.y - mario->getH());
