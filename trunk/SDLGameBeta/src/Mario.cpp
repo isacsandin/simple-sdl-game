@@ -18,7 +18,7 @@ Mario::Mario():
 
 	//Initialize the velocity
 	xVel = 50;
-	yVel = 150;
+	yVel = 300;
 
 	moving = -1;
 	down = false;
@@ -196,12 +196,16 @@ void Mario::move(Uint32 deltaTicks) {
 		if (sprite_frame >= animations[1])
 			sprite_frame = animations[0];
 
-		if (moving == 1)
+		if (moving == 1){
 			//Move the dot right
+			setXOld(this->getX());
 			this->setX(this->getX() + (xVel * (deltaTicks / 1000.f)));
-		else
+		}
+		else{
 			//Move the dot left
+			setXOld(this->getX());
 			this->setX(this->getX() - (xVel * (deltaTicks / 1000.f)));
+		}
 
 	}
 	/* Climbing or Crouched */
@@ -211,6 +215,7 @@ void Mario::move(Uint32 deltaTicks) {
 
 			if (climbing_s) {
 				/* Climbing DOWN*/
+				setYOld(this->getY());
 				this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 				if (sprite_frame < animations[6]
 						|| sprite_frame >= animations[7])
@@ -229,6 +234,7 @@ void Mario::move(Uint32 deltaTicks) {
 				/* JUMP */
 				if (jump_alt <= ((animations[4] - animations[3]) - 1)
 						&& !jump_done) {
+					setYOld(this->getY());
 					this->setY(this->getY() - (yVel * (deltaTicks / 1000.f)));
 					jump_alt += 1;
 
@@ -239,6 +245,7 @@ void Mario::move(Uint32 deltaTicks) {
 						sprite_frame += 1;
 				} else {
 					jump_done = true;
+					setYOld(this->getY());
 					this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 					jump_alt -= 1;
 					sprite_frame -= 1;
@@ -251,14 +258,18 @@ void Mario::move(Uint32 deltaTicks) {
 					}
 				}
 
-				if (moving == -1 || moving == 1)
+				if (moving == -1 || moving == 1){
+					setXOld(this->getX());
 					this->setX(this->getX() + (xVel * (deltaTicks / 1000.f)));
-				else if (moving == -2 || moving == 2)
+				}
+				else if (moving == -2 || moving == 2){
+					setXOld(this->getX());
 					this->setX(this->getX() - (xVel * (deltaTicks / 1000.f)));
-
+				}
 			} else {
 				/* Climbing UP */
 				if (climbing_s && up_s) {
+					setYOld(this->getY());
 					this->setY(this->getY() - (yVel * (deltaTicks / 1000.f)));
 
 					if (sprite_frame < animations[6]

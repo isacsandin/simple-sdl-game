@@ -26,10 +26,27 @@ public:
 	int life;
 	void gravity(Uint32 dt);
 	void impulse(Uint32 dt);
+
+	float getXOld() const {
+		return xOld;
+	}
+
+	float getYOld() const {
+		return yOld;
+	}
+
+	void setXOld(float old) {
+		xOld = old;
+	}
+
+	void setYOld(float old) {
+		yOld = old;
+	}
+
 private:
 	 //The velocity of the dot
 	    float xVel, yVel;
-
+	    float xOld, yOld;
 		int moving;
 
 		bool down;
@@ -45,7 +62,7 @@ private:
 		bool death_s,death_started;
 
 		//The portions of the sprite map to be blitted
-		SDL_Rect clip[ 70 ];
+		SDL_Rect clip[70];
 
 		int animations[10]; 	// 0 - Moving
 								// 1 - Stationary
