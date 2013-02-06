@@ -197,12 +197,12 @@ void Mario::move(Uint32 deltaTicks) {
 
 		if (moving == 1){
 			//Move the dot right
-			this->setXOld(this->getX());
+			//this->setXOld(this->getX());
 			this->setX(this->getX() + (xVel * (deltaTicks / 1000.f)));
 		}
 		else{
 			//Move the dot left
-			this->setXOld(this->getX());
+			//this->setXOld(this->getX());
 			this->setX(this->getX() - (xVel * (deltaTicks / 1000.f)));
 		}
 
@@ -214,7 +214,7 @@ void Mario::move(Uint32 deltaTicks) {
 
 			if (climbing_s) {
 				/* Climbing DOWN*/
-				this->setYOld(this->getY());
+				//this->setYOld(this->getY());
 				this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 				if (sprite_frame < animations[6]
 						|| sprite_frame >= animations[7])
@@ -233,7 +233,7 @@ void Mario::move(Uint32 deltaTicks) {
 				/* JUMP */
 				if (jump_alt <= ((animations[4] - animations[3]) - 1)
 						&& !jump_done) {
-					this->setYOld(this->getY());
+					//this->setYOld(this->getY());
 					this->setY(this->getY() - (yVel * (deltaTicks / 1000.f)));
 					jump_alt += 1;
 
@@ -244,8 +244,8 @@ void Mario::move(Uint32 deltaTicks) {
 						sprite_frame += 1;
 				} else {
 					jump_done = true;
-					this->setYOld(this->getY());
-					this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
+					//this->setYOld(this->getY());
+					//this->setY(this->getY() + (yVel * (deltaTicks / 1000.f)));
 					jump_alt -= 1;
 					sprite_frame -= 1;
 
@@ -257,18 +257,18 @@ void Mario::move(Uint32 deltaTicks) {
 					}
 				}
 
-				if (moving == -1 || moving == 1){
+				/*if (moving == -1 || moving == 1){
 					this->setXOld(this->getX());
-					this->setX(this->getX() + (xVel * (deltaTicks / 1000.f)));
+					this->setX(this->getX() + (5*xVel * (deltaTicks / 1000.f)));
 				}
 				else if (moving == -2 || moving == 2){
 					this->setXOld(this->getX());
-					this->setX(this->getX() - (xVel * (deltaTicks / 1000.f)));
-				}
+					this->setX(this->getX() - (5*xVel * (deltaTicks / 1000.f)));
+				}*/
 			} else {
 				/* Climbing UP */
 				if (climbing_s && up_s) {
-					this->setYOld(this->getY());
+					//this->setYOld(this->getY());
 					this->setY(this->getY() - (yVel * (deltaTicks / 1000.f)));
 
 					if (sprite_frame < animations[6]
@@ -287,6 +287,9 @@ void Mario::move(Uint32 deltaTicks) {
 			}
 		}
 	}
+	//cout << this->getYOld() << " " << this->getY() << endl;
+	//cout << this->getXOld() << " " << this->getX() << endl;
+	//cout << "===============================" << endl;
 }
 
 int Mario::shot() {

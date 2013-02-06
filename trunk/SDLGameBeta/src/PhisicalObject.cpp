@@ -18,6 +18,7 @@ PhisicalObject::PhisicalObject(int x,int y,int w,int h) {
 	rect.w = w;
 	rect.h = h;
 	this->setBox(rect);
+	this->setBoxOld(rect);
 }
 
 PhisicalObject::~PhisicalObject() {

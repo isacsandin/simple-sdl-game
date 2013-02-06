@@ -118,7 +118,7 @@ void Stage::loop() {
 
 						if (mario->checkCollision(tile)) {
 							mario->setX(mario->getXOld());
-							//mario->setY(mario->getYOld());
+							mario->setY(mario->getYOld());
 							cout << "PEDRINHA PORRA!!  " << gid << endl;
 						}
 					} else if (gid == 311) {

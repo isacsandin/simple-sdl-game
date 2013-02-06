@@ -27,26 +27,9 @@ public:
 	void gravity(Uint32 dt);
 	void impulse(Uint32 dt);
 
-	float getXOld() const {
-		return xOld;
-	}
-
-	float getYOld() const {
-		return yOld;
-	}
-
-	void setXOld(float old) {
-		xOld = old;
-	}
-
-	void setYOld(float old) {
-		yOld = old;
-	}
-
 private:
 	 //The velocity of the dot
 	    float xVel, yVel;
-	    float xOld, yOld;
 		int moving;
 
 		bool down;
