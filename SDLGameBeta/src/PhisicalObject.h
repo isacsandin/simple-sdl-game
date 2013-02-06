@@ -18,6 +18,7 @@
 class PhisicalObject {
 private:
 	SDL_Rect box;
+	SDL_Rect boxOld;
 public:
 	PhisicalObject();
 	PhisicalObject(int x,int y,int w,int h);
@@ -37,16 +38,34 @@ public:
 		return box.x;
 	}
 
+	int getXOld() const {
+			return boxOld.x;
+	}
+
 	void setX(int x) {
+		setXOld(getX());
 		this->box.x = x;
+	}
+
+	void setXOld(int x) {
+			this->boxOld.x = x;
 	}
 
 	int getY() const {
 		return box.y;
 	}
 
+	int getYOld() const {
+			return boxOld.y;
+	}
+
 	void setY(int y) {
+		setYOld(getY());
 		this->box.y = y;
+	}
+
+	void setYOld(int y) {
+			this->boxOld.y = y;
 	}
 
 	int getW() const {
@@ -63,6 +82,14 @@ public:
 
 	void setH(int h) {
 		this->box.h = h;
+	}
+
+	const SDL_Rect& getBoxOld() const {
+		return boxOld;
+	}
+
+	void setBoxOld(const SDL_Rect& boxOld) {
+		this->boxOld = boxOld;
 	}
 };
 
