@@ -287,9 +287,11 @@ void Mario::move(Uint32 deltaTicks) {
 			}
 		}
 	}
-	//cout << this->getYOld() << " " << this->getY() << endl;
-	//cout << this->getXOld() << " " << this->getX() << endl;
-	//cout << "===============================" << endl;
+
+	//if(this->getX() == SCREEN_WIDTH){
+	//	this->setX(0);
+
+	//}
 }
 
 int Mario::shot() {

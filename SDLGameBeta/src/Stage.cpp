@@ -102,7 +102,7 @@ void Stage::loop() {
 						tile.x -= camera->getBox().x;
 						tile.y -= camera->getBox().y;
 
-						if (mario->checkCollision(tile)) { // MORREU!
+						if (int c = mario->checkCollision(tile)) { // MORREU!
 							mario->life = 0;
 							if (mario->life <= 0) {
 								mario->death();
@@ -116,17 +116,18 @@ void Stage::loop() {
 						tile.x -= camera->getBox().x;
 						tile.y -= camera->getBox().y;
 
-						if (mario->checkCollision(tile)) {
-							mario->setX(mario->getXOld());
-							mario->setY(mario->getYOld());
-							cout << "PEDRINHA PORRA!!  " << gid << endl;
+						if (int c = mario->checkCollision(tile)) {
+							printf("C = %d\n",c);
+								mario->setY(mario->getYOld());
+								mario->setX(mario->getXOld());
+							//cout << "PEDRINHA PORRA!!  " << gid << endl;
 						}
 					} else if (gid == 311) {
 						SDL_Rect tile = map->getGlobalRect(w, h, tilesetId);
 						tile.x -= camera->getBox().x;
 						tile.y -= camera->getBox().y;
-						if (mario->checkCollision(tile)) {
-							cout << "COLIDIU PORRA!!  " << gid << endl;
+						if (int c = mario->checkCollision(tile)) {
+							//cout << "COLIDIU PORRA!!  " << gid << endl;
 							mario->setY(tile.y - mario->getH());
 							break;
 						}
@@ -136,7 +137,8 @@ void Stage::loop() {
 		}
 
 		if (mario->checkCollision(end->getBox())) {
-			mario->setX(mario->getX() - 20);
+			mario->setX(0);
+			camera->setX(camera->getX() + screenWidth);
 		}
 		if (koopa->checkCollision(end->getBox())) {
 			koopa->setX(koopa->getX() - 20);

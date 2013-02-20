@@ -84,31 +84,35 @@ inline bool check_collision( SDL_Rect A, SDL_Rect B )
     topB = B.y;
     bottomB = B.y + B.h;
 
-    int position;
+    int colidiu=0;
 
     //If any of the sides from A are outside of B
     if( bottomA <= topB ) //Bloca A em cima de B
     {
-        return false;
+        return 0;
     }
+    else colidiu = 1;
 
     if( topA >= bottomB ) //Bloco A em baixo de B
     {
-        return false;
+        return 0;
     }
+    else colidiu = 2;
 
     if( rightA <= leftB ) //Bloco A à direita de B
     {
-        return false;
+        return 0;
     }
+    else colidiu = 3;
 
     if( leftA >= rightB ) //Bloco A à esquerda de B
     {
-        return false;
+        return 0;
     }
+    else colidiu = 4;
 
     //If none of the sides from A are outside B
-    return true;
+    return colidiu;
 }
 
 inline void* loadFile( const char * filename, bool appendNull ) {

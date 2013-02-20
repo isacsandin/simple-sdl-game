@@ -40,7 +40,7 @@ void Camera::handleInput(SDL_Event event)
 
 void Camera::move(Uint32 deltaTicks){
 	//Scroll background
-	this->setX( this->getX()+(10*moving) );
+	//this->setX( this->getX()+(10*moving) );
 
 }
 
