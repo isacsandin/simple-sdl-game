@@ -1,0 +1,1 @@
+Um simples jogo em SDL desenvolvido como requisito da disciplida de Design e Desenvolvimento de Jogos da Universidade Federal de São João del Rei
